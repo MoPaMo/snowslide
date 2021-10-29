@@ -1,4 +1,4 @@
-let app = new PIXI.Application({ width: 640, height: 360 });
+let app = new PIXI.Application({ width: screen.width, height: screen.height });
 document.body.appendChild(app.view);
 let sprite = PIXI.Sprite.from("sample.svg");
   app.stage.addChild(sprite);
