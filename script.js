@@ -23,6 +23,7 @@ function preload ()
     this.load.image('sky', 'assets/space3.png');
     this.load.image('logo', 'assets/phaser3-logo.png');
     this.load.image('red', 'assets/red.png');
+    this.load.image('white', 'assets/white.png');
 }
 
 function create ()
@@ -44,4 +45,16 @@ function create ()
     logo.setCollideWorldBounds(true);
 
     emitter.startFollow(logo);
+    var snow = this.add.particles('white');
+
+ snow.createEmitter({
+
+          x: { min: 00, max: screen.width },
+          y: 1,
+          lifespan: 2000,
+          speedY: { min: 200, max: 400 },
+          scale: { start: 0.2, end: 0 },
+          quantity: 2,
+          blendMode: 'ADD'
+      });
 }
