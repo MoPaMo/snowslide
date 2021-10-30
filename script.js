@@ -1,6 +1,6 @@
 let app = new PIXI.Application({ width: screen.width, height: screen.height });
 document.body.appendChild(app.view);
-let sprite = PIXI.Sprite.from("sample.svg");
+let sprite = PIXI.Sprite.from("/sleigh.png");
   app.stage.addChild(sprite);
   // Add a variable to count up the seconds our demo has been running
   let elapsed = 0.0;
@@ -13,3 +13,6 @@ let sprite = PIXI.Sprite.from("sample.svg");
     // by 50 to slow the animation down a bit...
     sprite.x = 100.0 + Math.cos(elapsed/50.0) * 100.0;
   });
+
+  sprite.width=100.0;
+  sprite.height=100.0;
