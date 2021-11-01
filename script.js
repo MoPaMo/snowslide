@@ -5,7 +5,10 @@ var config = {
   physics: {
     default: "arcade",
     arcade: {
-      gravity: { y: 200,x:0 },
+      gravity: {
+        y: 200,
+        x: 0
+      },
     },
   },
   scene: {
@@ -27,22 +30,31 @@ function preload() {
 
 function create() {
   this.add.image(400, 300, "sky");
-        this.cameras.main.setSize(screen.width, screen.height);
+  this.cameras.main.setSize(screen.width, screen.height);
   var particles = this.add.particles("red");
 
   var avatar = this.physics.add.image(400, 100, "sleigh");
-avatar.setScale(0.25,0.25);
+  avatar.setScale(0.25, 0.25);
   avatar.setVelocity(100, 200);
   avatar.setCollideWorldBounds(true);
-        this.cameras.main.startFollow(avatar);
+  this.cameras.main.startFollow(avatar);
   var snow = this.add.particles("white");
 
   snow.createEmitter({
-    x: { min: 00, max: screen.width },
+    x: {
+      min: 00,
+      max: screen.width
+    },
     y: 1,
     lifespan: 2000,
-    speedY: { min: 200, max: 400 },
-    scale: { start: 0.2, end: 0 },
+    speedY: {
+      min: 200,
+      max: 400
+    },
+    scale: {
+      start: 0.2,
+      end: 0
+    },
     quantity: 2,
     blendMode: "ADD",
   });
