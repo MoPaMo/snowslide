@@ -14,10 +14,12 @@ var config = {
   scene: {
     preload: preload,
     create: create,
+    update: update
   },
 };
 
 var game = new Phaser.Game(config);
+
 
 function preload() {
   this.load.setBaseURL("/");
@@ -27,16 +29,25 @@ function preload() {
   this.load.image("white", "assets/white.png");
   this.load.image("sleigh", "assets/sleigh_lg.png");
 }
+var keys, avatar
 
 function create() {
+  keys = {
+      a: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A),
+      w: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W),
+      s: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S),
+      d: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D),
+      space: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
+    },
+
   this.add.image(400, 300, "sky");
   this.cameras.main.setSize(screen.width, screen.height);
   var particles = this.add.particles("red");
 
-  var avatar = this.physics.add.image(400, 100, "sleigh");
+  avatar = this.physics.add.image(400, 100, "sleigh");
   avatar.setScale(0.25, 0.25);
   avatar.setVelocity(100, 200);
-  avatar.setCollideWorldBounds(true);
+  //avatar.setCollideWorldBounds(true);
   this.cameras.main.startFollow(avatar);
   var snow = this.add.particles("white");
 
@@ -58,4 +69,17 @@ function create() {
     quantity: 2,
     blendMode: "ADD",
   });
+
+
+}
+
+function update() {
+
+  if (keys['space'].isDown) {
+    avatar.y -= 4;
+  }
+  if (keys['d'].isDown) {
+    avatar.x += 2;
+  }
+  avatar.x+=2
 }
