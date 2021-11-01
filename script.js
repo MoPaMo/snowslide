@@ -5,7 +5,7 @@ var config = {
   physics: {
     default: "arcade",
     arcade: {
-      gravity: { y: 200 },
+      gravity: { y: 200,x:0 },
     },
   },
   scene: {
@@ -20,29 +20,21 @@ function preload() {
   this.load.setBaseURL("/");
 
   this.load.image("sky", "assets/space3.png");
-  this.load.image("logo", "assets/phaser3-logo.png");
   this.load.image("red", "assets/red.png");
   this.load.image("white", "assets/white.png");
+  this.load.image("sleigh", "assets/sleigh_lg.png");
 }
 
 function create() {
   this.add.image(400, 300, "sky");
-
+        this.cameras.main.setSize(screen.width, screen.height);
   var particles = this.add.particles("red");
 
-  var emitter = particles.createEmitter({
-    speed: 100,
-    scale: { start: 1, end: 0 },
-    blendMode: "ADD",
-  });
-
-  var logo = this.physics.add.image(400, 100, "logo");
-
-  logo.setVelocity(100, 200);
-  logo.setBounce(1, 1);
-  logo.setCollideWorldBounds(true);
-
-  emitter.startFollow(logo);
+  var avatar = this.physics.add.image(400, 100, "sleigh");
+avatar.setScale(0.25,0.25);
+  avatar.setVelocity(100, 200);
+  avatar.setCollideWorldBounds(true);
+        this.cameras.main.startFollow(avatar);
   var snow = this.add.particles("white");
 
   snow.createEmitter({
